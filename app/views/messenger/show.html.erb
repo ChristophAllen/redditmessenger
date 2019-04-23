@@ -1,0 +1,12 @@
+<h1>Show Page</h1>
+<p> <%= @a.length %> Nurse usernames collected </p>
+
+
+<% @x.each do |g| %>
+	<% g.each do |t| %>
+		<p> Name: <%= t.name %> </p>
+		<p> Message Sent: <%= t.messagesent %> </p>
+		<p> Job: Nurse </p>
+		<br>
+	<% end %>
+<% end %>

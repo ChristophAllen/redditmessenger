@@ -1,0 +1,4 @@
+<%index_options = [['Select For Choices', ''],['Reddit Save','messenger/save'],
+['Reddit Show','messenger/show'], ['Reddit Send Message','messenger/sendmessage']]%>
+
+<%= select_tag "store-selects", options_for_select(index_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
