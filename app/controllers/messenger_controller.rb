@@ -7,7 +7,7 @@ class MessengerController < ApplicationController
 		require "selenium-webdriver"
 		driver = Selenium::WebDriver.for :safari
 		driver.navigate.to "https://www.reddit.com/r/nursing/"
-		10.times do
+		20.times do
 			driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
 			sleep 2
 		end
@@ -27,13 +27,13 @@ class MessengerController < ApplicationController
 			s.click
 			sleep 4
 			usernames = driver.find_elements(:tag_name, "a")
-			sleep 4
+			sleep 3
 			usernames.each do |x|
 				if x.attribute("href").split("/").include?("user") && !x.text.split("").include?("/")
 					Nurse.create(name: x.text, job: 'nurse')
 				end
 			end
-			delete_repeats()
+			# delete_repeats()
 			driver.navigate.back
 		end
 	end
