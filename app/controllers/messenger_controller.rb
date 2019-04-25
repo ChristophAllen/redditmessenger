@@ -92,36 +92,24 @@ class MessengerController < ApplicationController
 		pass.send_keys "Guppy303*"
 		pass.submit
 		sleep 5
-		# Nurse.all.each do |x|
-		1.times do
-			sleep 3
-			driver.navigate.to "https://www.reddit.com/message/compose/"
-			sleep 3
-			frame = driver.find_elements(:tag_name, "iframe")
-			sleep 3
-			driver.switch_to.frame(0)
+		driver.navigate.to "https://www.reddit.com/message/compose/"
+		sleep 5
+		frame = driver.find_elements(:tag_name, "iframe")
+		sleep 5
+		driver.switch_to.frame(0)
+		sleep 5
+		to = driver.find_element(name: 'to')
+		text = driver.find_element(name: 'text')
+		submit = driver.find_element(name: 'send')
+		Nurse.all.each do |x|
 			sleep 5
-			# to = driver.find_element(name: 'to')
-			input = driver.find_elements(:tag_name, "input")	
-			puts input.size
-			puts input.size
-			puts input.size
-			puts input.size
-			puts input.size
-			puts input.size
-			puts input.size
-			puts input.size
-			# to = driver.find_element(name: 'to')
-			# gtm-jail
-			# text = driver.find_element(name: 'text')
-			# submit = driver.find_element(name: 'send')
-			# if x.messagesent == true
+			if x.messagesent == true
 
-			# else
-			# 	to.send_keys x.name
-			# 	subject.send_keys subjecttemplate()
-			# 	text.send_keys texttemplate()
-			# end
+			else
+				to.send_keys x.name
+				subject.send_keys subjecttemplate()
+				text.send_keys texttemplate()
+			end
 		end
 	end
 
