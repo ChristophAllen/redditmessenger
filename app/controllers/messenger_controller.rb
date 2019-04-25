@@ -99,7 +99,7 @@ class MessengerController < ApplicationController
 			sleep 3
 			frame = driver.find_elements(:tag_name, "iframe")
 			sleep 3
-			driver.switch_to.frame(1)
+			driver.switch_to.frame(0)
 			sleep 5
 			# to = driver.find_element(name: 'to')
 			input = driver.find_elements(:tag_name, "input")	
