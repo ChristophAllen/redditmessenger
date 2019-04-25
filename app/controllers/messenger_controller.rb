@@ -6,8 +6,8 @@ class MessengerController < ApplicationController
 	def save
 		require "selenium-webdriver"
 		driver = Selenium::WebDriver.for :safari
-		driver.navigate.to "https://www.reddit.com/r/nursing/"
-		20.times do
+		driver.navigate.to "https://www.reddit.com/r/nursing/top/?t=month"
+		15.times do
 			driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
 			sleep 2
 		end
@@ -82,12 +82,68 @@ class MessengerController < ApplicationController
 
 
 	def sendmessage
-		# driver.navigate.to "https://www.reddit.com/login/"
-		# user = driver.find_element(name: 'username')
-		# user.send_keys "negativedisplay"
-		# pass = driver.find_element(name: 'password')
-		# pass.send_keys "Guppy303*"
-		# pass.submit
-		# sleep 5
+		require "selenium-webdriver"
+		driver = Selenium::WebDriver.for :safari
+		driver.navigate.to "https://www.reddit.com/login/"
+		sleep 3
+		user = driver.find_element(name: 'username')
+		user.send_keys "negativedisplay"
+		pass = driver.find_element(name: 'password')
+		pass.send_keys "Guppy303*"
+		pass.submit
+		sleep 5
+		# Nurse.all.each do |x|
+		1.times do
+			sleep 3
+			driver.navigate.to "https://www.reddit.com/message/compose/"
+			sleep 3
+			frame = driver.find_elements(:tag_name, "iframe")
+			sleep 3
+			driver.switch_to.frame(1)
+			sleep 5
+			# to = driver.find_element(name: 'to')
+			input = driver.find_elements(:tag_name, "input")	
+			puts input.size
+			puts input.size
+			puts input.size
+			puts input.size
+			puts input.size
+			puts input.size
+			puts input.size
+			puts input.size
+			# to = driver.find_element(name: 'to')
+			# gtm-jail
+			# text = driver.find_element(name: 'text')
+			# submit = driver.find_element(name: 'send')
+			# if x.messagesent == true
+
+			# else
+			# 	to.send_keys x.name
+			# 	subject.send_keys subjecttemplate()
+			# 	text.send_keys texttemplate()
+			# end
+		end
 	end
+
+
+
+
+	def subjecttemplate
+		return "I'm interested in the nursing profession"
+	end
+
+	def texttemplate
+		return "Hey, sorry if this is a bother but I found your username through the nursing subreddit.  
+		I’m an amateur web developer who is trying to build a resource to help young people decide what 
+		they want to do in life.  Just want to make something cool while I’m saving up to go back to school.
+		  The idea I’ve built is a video upload platform where young people can go to watch others talk about 
+		  what a day is like in their life in regards to there job.  To maybe help them decide what they want 
+		  to do in life.  Calling it DayInTheLifeOf.  And I’m on the part where I’m trying to get videos.  
+		  	Would you be interested in taking a few minute video of yourself talking about what it’s like to 
+		  	be a nurse(**don’t have to show your face**)?  And I bought some meager gold to give out for anyone 
+		  	interested.  The site is going to be free to use, and ad free if that matters to you.  If you are interested 
+		  	I have a short list of questions I could send to give an idea of things to talk about, and a dropbox link to
+		  	 upload the video to.  If not, no worries and my apologies for bothering."
+	end
+
 end
