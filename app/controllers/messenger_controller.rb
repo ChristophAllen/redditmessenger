@@ -6,11 +6,11 @@ class MessengerController < ApplicationController
 	def save
 		require "selenium-webdriver"
 		driver = Selenium::WebDriver.for :safari
-		driver.navigate.to "https://www.reddit.com/r/nursing/top/?t=month"
-		15.times do
-			driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-			sleep 2
-		end
+		driver.navigate.to "https://www.reddit.com/r/AskEngineers/search?q=flair%3A%22interview+list%22&sort=new&t=all"
+		sleep 30
+		# 15.times do
+		# 	driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+		# end
 		links = driver.find_elements(:tag_name, "span")
 		comments_arr = []
 		links.each do |x|
@@ -30,7 +30,7 @@ class MessengerController < ApplicationController
 			sleep 3
 			usernames.each do |x|
 				if x.attribute("href").split("/").include?("user") && !x.text.split("").include?("/")
-					Nurse.create(name: x.text, job: 'nurse')
+					Engineer.create(name: x.text, job: 'engineer', messagesent: false)
 				end
 			end
 			# delete_repeats()
@@ -51,8 +51,8 @@ class MessengerController < ApplicationController
 	end
 
 	def show
-		delete_repeats()
-		@a = Nurse.all
+		# delete_repeats()
+		@a = Engineer.all
 		@x = [@a]
 	end
 
@@ -102,22 +102,35 @@ class MessengerController < ApplicationController
 		subject = driver.find_element(name: 'subject')
 		text = driver.find_elements(name: 'text')
 		submit = driver.find_element(name: 'send')
-		# Nurse.all.each do |x|      
-			sleep 3
-			to.send_keys x.name   #doesn't belong 
-			if x.messagesent == true || to.attribute('value')
-
+		Nurse.all.each do |x|      
+			if x.messagesent == true || x.name.split(" ").include?("comments")
+				puts "option 1 happened"
+			elsif to.attribute('value').length > 0 || subject.attribute('value').length > 0
+				puts "option 2 happened"
+				driver.navigate.to "https://www.reddit.com/message/compose/"
+				sleep 10
+				frame = driver.find_elements(:tag_name, "iframe")
+				sleep 10
+				driver.switch_to.frame(0)
+				sleep 10
+				to = driver.find_element(name: 'to')
+				subject = driver.find_element(name: 'subject')
+				text = driver.find_elements(name: 'text')
+				submit = driver.find_element(name: 'send')
+				sleep 5
 			else
-				# to.send_keys x.name
-				# sleep 2
-				# subject.send_keys subjecttemplate()
-				# sleep 2
-				# text[1].send_keys texttemplate()
-				# sleep 8
-				# x.update_column(:messagesent, true)
-				# submit.click
+				puts "option 3 happened"
+				to.send_keys x.name
+				sleep 2
+				subject.send_keys subjecttemplate()
+				sleep 3
+				text[1].send_keys texttemplate()
+				sleep 9
+				x.update_column(:messagesent, true)
+				submit.click
+				sleep 3
 			end
-		# end
+		end
 	end
 
 
