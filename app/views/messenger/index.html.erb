@@ -2,3 +2,14 @@
 ['Reddit Show','messenger/show'], ['Reddit Send Message','messenger/sendmessage']]%>
 
 <%= select_tag "store-selects", options_for_select(index_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
+
+
+
+
+
+<%usernames_options = [['Username Options', ''],['Username Collect','username/collect'], ['Username Upvote','username/upvote']]%>
+
+<%= select_tag "store-selects", options_for_select(usernames_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
+
+
+

@@ -1,0 +1,2 @@
+class Navy < ApplicationRecord
+end

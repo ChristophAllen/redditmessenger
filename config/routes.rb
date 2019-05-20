@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 	get 'messenger/longpagesave'
 	get 'messenger/sendmessage'
 	get 'messenger/show'
+
+	get 'username/collect'
+	get 'username/upvote'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

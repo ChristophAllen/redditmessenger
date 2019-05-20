@@ -10,9 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_204917) do
+ActiveRecord::Schema.define(version: 2019_05_13_221047) do
+
+  create_table "accountants", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "armies", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cops", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "engineers", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "firefighters", force: :cascade do |t|
     t.string "name"
     t.boolean "messagesent"
     t.string "job"
@@ -28,7 +60,46 @@ ActiveRecord::Schema.define(version: 2019_04_28_204917) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "navies", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nurses", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usernames", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vets", force: :cascade do |t|
+    t.string "name"
+    t.boolean "messagesent"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "welders", force: :cascade do |t|
     t.string "name"
     t.boolean "messagesent"
     t.string "job"

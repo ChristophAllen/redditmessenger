@@ -1,0 +1,2 @@
+class Welder < ApplicationRecord
+end
