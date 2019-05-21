@@ -137,35 +137,35 @@ class MessengerController < ApplicationController
 		subject = driver.find_element(name: 'subject')
 		text = driver.find_elements(name: 'text')
 		submit = driver.find_element(name: 'send')
-		job().all.each do |x|      
-			if x.messagesent == true || x.name.split(" ").include?("comments")
-				puts "option 1 happened"
-			elsif to.attribute('value').length > 0 || subject.attribute('value').length > 0
-				puts "option 2 happened"
-				driver.navigate.to "https://www.reddit.com/message/compose/"
-				sleep 10
-				frame = driver.find_elements(:tag_name, "iframe")
-				sleep 10
-				driver.switch_to.frame(0)
-				sleep 10
-				to = driver.find_element(name: 'to')
-				subject = driver.find_element(name: 'subject')
-				text = driver.find_elements(name: 'text')
-				submit = driver.find_element(name: 'send')
-				sleep 5
-			else
-				puts "option 3 happened"
-				to.send_keys x.name
-				sleep 2
-				subject.send_keys subjecttemplate()
-				sleep 3
-				text[1].send_keys texttemplate()
-				sleep 9
-				x.update_column(:messagesent, true)
-				submit.click
-				sleep 3
-			end
-		end
+		# job().all.each do |x|      
+		# 	if x.messagesent == true || x.name.split(" ").include?("comments")
+		# 		puts "option 1 happened"
+		# 	elsif to.attribute('value').length > 0 || subject.attribute('value').length > 0
+		# 		puts "option 2 happened"
+		# 		driver.navigate.to "https://www.reddit.com/message/compose/"
+		# 		sleep 10
+		# 		frame = driver.find_elements(:tag_name, "iframe")
+		# 		sleep 10
+		# 		driver.switch_to.frame(0)
+		# 		sleep 10
+		# 		to = driver.find_element(name: 'to')
+		# 		subject = driver.find_element(name: 'subject')
+		# 		text = driver.find_elements(name: 'text')
+		# 		submit = driver.find_element(name: 'send')
+		# 		sleep 5
+		# 	else
+				# puts "option 3 happened"
+				# to.send_keys x.name
+				# sleep 2
+				# subject.send_keys subjecttemplate()
+				# sleep 3
+				# text[1].send_keys texttemplate()
+				# sleep 9
+				# x.update_column(:messagesent, true)
+				# submit.click
+				# sleep 3
+			# end
+		# end
 	end
 
 
